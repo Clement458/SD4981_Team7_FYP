@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Pots
+  - Mud
+  - Seed
+  - Pipette
+  - Water
+  - TrackingObject
+  - WaterPipette
   layers:
   - Default
   - TransparentFX
@@ -40,4 +47,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Static
+    uniqueID: 1162139959
+    locked: 0
+  - name: Tools
+    uniqueID: 2227684253
     locked: 0
