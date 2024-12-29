@@ -11,6 +11,8 @@ TagManager:
   - Water
   - TrackingObject
   - WaterPipette
+  - Iron ore
+  - Lunar rocks
   layers:
   - Default
   - TransparentFX
