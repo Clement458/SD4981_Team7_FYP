@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ public class PipeController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        gameObject.tag = "Pipette";
         animator.SetBool("Filled", false);
     }
 
@@ -35,18 +36,27 @@ public class PipeController : MonoBehaviour
                 {
                     Debug.Log("Cannot fill pipette!");
                 }
+                break;
             }
-            else if (collider.CompareTag("Pots"))
+            else if (collider.CompareTag("Pots") || collider.CompareTag("Veggies"))
             {
                 if (gameObject.tag == "WaterPipette" && animator.GetBool("Filled"))
                 {
                     animator.SetBool("Filled", false);
                     gameObject.tag = "Pipette";
+                    Debug.Log("Watered!");
                 }
                 else
                 {
                     Debug.Log("Cannot water!");
                 }
+                break;
+            }
+            else
+            {
+                Debug.Log("Action not identified");
+                Debug.Log(gameObject.tag);
+                Debug.Log(collider.tag);
             }
         }
     }

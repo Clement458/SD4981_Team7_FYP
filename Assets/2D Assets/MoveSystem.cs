@@ -51,14 +51,21 @@ public class MoveSystem : MonoBehaviour
             {
                 collider.gameObject.SendMessage("PotAction");
             }
-
-            if (gameObject.tag == "Pipette" && collider.CompareTag("Water"))
+            else if ((gameObject.tag == "Cutters" || gameObject.tag == "WaterPipette" ) && collider.CompareTag("Veggies"))
+            {
+                collider.gameObject.SendMessage("VeggiesAction");
+            }
+            else if (gameObject.tag == "Pipette" && collider.CompareTag("Water"))
             {
                 gameObject.SendMessage("PipeHandler");
             }
             else if (gameObject.tag == "WaterPipette" && collider.CompareTag("Water"))
             {
                 Debug.Log("Pipette already filled!");
+            }
+            else
+            {
+                Debug.Log("MoveSystem cannot identify action");
             }
         }
 

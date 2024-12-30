@@ -13,6 +13,8 @@ TagManager:
   - WaterPipette
   - Iron ore
   - Lunar rocks
+  - Veggies
+  - Cutters
   layers:
   - Default
   - TransparentFX
