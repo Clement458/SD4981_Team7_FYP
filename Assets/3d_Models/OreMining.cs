@@ -17,7 +17,7 @@ public class OreMining : MonoBehaviour
     private bool growing = false;
     private float growingTime = 0;
 
-    private static int collectedItems = 0;
+    public static int collectedItems = 0;
 
     private Vector3[] directions =
     {
