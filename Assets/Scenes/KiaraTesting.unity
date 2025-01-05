@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.040467136, g: 0.03882104, b: 0.04093229, a: 1}
+  m_IndirectSpecularColor: {r: 0.040497087, g: 0.038840722, b: 0.040977336, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -253,6 +253,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 958880789539363445, guid: 000c909db7172e241b16618e7396b621, type: 3}
   m_PrefabInstance: {fileID: 1500030362}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &143182240 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2963641220286763182, guid: 7d36b5354c8d9cd409c73930ea8fa5ed, type: 3}
+  m_PrefabInstance: {fileID: 817966489402153702}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &143921209
 GameObject:
@@ -657,7 +662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &322159271
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2027,6 +2032,9 @@ Transform:
   - {fileID: 970339216}
   - {fileID: 928096323}
   - {fileID: 1872591551}
+  - {fileID: 141098389}
+  - {fileID: 143182240}
+  - {fileID: 1607485656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &828500079
@@ -3090,7 +3098,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 819820206}
     m_Modifications:
     - target: {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
       propertyPath: m_Name
@@ -3114,7 +3122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -3287,7 +3295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1276390786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3462,7 +3470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1334250987
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3656,7 +3664,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 819820206}
     m_Modifications:
     - target: {fileID: 433876444934881487, guid: 000c909db7172e241b16618e7396b621, type: 3}
       propertyPath: m_Name
@@ -3684,7 +3692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 958880789539363445, guid: 000c909db7172e241b16618e7396b621, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.08910692
+      value: 0.089106925
       objectReference: {fileID: 0}
     - target: {fileID: 958880789539363445, guid: 000c909db7172e241b16618e7396b621, type: 3}
       propertyPath: m_LocalRotation.y
@@ -3692,7 +3700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 958880789539363445, guid: 000c909db7172e241b16618e7396b621, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.05456538
+      value: -0.054565385
       objectReference: {fileID: 0}
     - target: {fileID: 958880789539363445, guid: 000c909db7172e241b16618e7396b621, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4025,6 +4033,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!4 &1607485656 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4431084402279646, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
+  m_PrefabInstance: {fileID: 1035801551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1735115306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4446,7 +4459,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 819820206}
     m_Modifications:
     - target: {fileID: 2480119246400883220, guid: 7d36b5354c8d9cd409c73930ea8fa5ed, type: 3}
       propertyPath: m_Name
@@ -4455,6 +4468,14 @@ PrefabInstance:
     - target: {fileID: 2480119246400883220, guid: 7d36b5354c8d9cd409c73930ea8fa5ed, type: 3}
       propertyPath: m_TagString
       value: Lunar rocks
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963641220286763182, guid: 7d36b5354c8d9cd409c73930ea8fa5ed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.84444004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963641220286763182, guid: 7d36b5354c8d9cd409c73930ea8fa5ed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.84444004
       objectReference: {fileID: 0}
     - target: {fileID: 2963641220286763182, guid: 7d36b5354c8d9cd409c73930ea8fa5ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4514,6 +4535,3 @@ SceneRoots:
   - {fileID: 858894702}
   - {fileID: 828500079}
   - {fileID: 774730779}
-  - {fileID: 1500030362}
-  - {fileID: 817966489402153702}
-  - {fileID: 1035801551}

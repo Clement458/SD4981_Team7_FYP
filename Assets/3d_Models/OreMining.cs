@@ -17,7 +17,8 @@ public class OreMining : MonoBehaviour
     private bool growing = false;
     private float growingTime = 0;
 
-    public static int collectedItems = 0;
+    public static int collectedIron = 0;
+    public static int collectedOre = 0;
 
     private Vector3[] directions =
     {
@@ -67,17 +68,25 @@ public class OreMining : MonoBehaviour
     private void pressedHandler(object sender, EventArgs e)
     {
         startGrowing();
-        if (transform.localScale.x < 0.5f)
+        if (transform.localScale.x < 0.4f)
         {
             //Debug.Log("Small object");
-            collectedItems += 1;
+            if (gameObject.tag == "Iron ore")
+            {
+                collectedIron++;
+                collectionText.text = gameObject.tag + " collected: " + collectedIron;
+            }
+            else if (gameObject.tag == "Lunar rocks")
+            {
+                collectedOre++;
+                collectionText.text = gameObject.tag + " collected: " + collectedOre;
+            }
             Destroy(gameObject);
         }
         else
         {
             Debug.Log("No ores collected");
         }
-        collectionText.text = gameObject.tag + " collected: " + collectedItems;
     }
 
     private void longPressedHandler(object sender, GestureStateChangeEventArgs e)
