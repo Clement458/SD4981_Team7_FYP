@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/RubyTesting.unity
+    guid: 6360c36a77ca23142817000b25902942
+  - enabled: 1
     path: Assets/TouchScript/Examples/Examples.unity
     guid: 7cba6bf72365a4167930fec2f6f39b74
   - enabled: 1
