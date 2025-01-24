@@ -44,7 +44,7 @@ public class GoodRobot : MonoBehaviour
             // Wait at the current target and increment the value
             if (currentTargetIndex == 0)
             {
-                yield return StartCoroutine(IncrementValue(() => OreMining.collectedOre++));
+                yield return StartCoroutine(IncrementValue(() => OreMining.collectedRocks++));
             }
             else if (currentTargetIndex == 1)
             {
@@ -65,7 +65,7 @@ public class GoodRobot : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             incrementAction();
-            Debug.Log("Value: " + (currentTargetIndex == 0 ? OreMining.collectedOre : secondValue));
+            Debug.Log("Value: " + (currentTargetIndex == 0 ? OreMining.collectedRocks : secondValue));
             float randomDelay = Random.Range(0.5f, 2.0f); // Random delay between 0.5 and 2 seconds
             yield return new WaitForSeconds(randomDelay);
         }

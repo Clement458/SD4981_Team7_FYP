@@ -14,51 +14,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.84444
+      value: 0.8444401
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.84444
+      value: 0.8444401
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.5
+      value: 28.82
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.73
+      value: -16.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 48.24114
+      value: 54.43
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0038390036
+      value: 0.9999055
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00014242037
+      value: 0.013744068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.03707247
+      value: 0.00019201032
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.99930525
+      value: -0.0000026392524
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 4.249
+      value: 1.575
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 0.022
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -180.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_Name
@@ -66,7 +66,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
       propertyPath: m_TagString
-      value: LunarRocks
+      value: Lunar rocks
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124061829985350958, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124061829985350958, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124061829985350958, guid: 94e10c98ace395e4ab3767018a65e2de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -130,8 +142,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.525661, y: 1.609886, z: 3.981304}
-  m_Center: {x: -0.31415865, y: 0.5667279, z: 0.46943533}
+  m_Size: {x: 4.5256615, y: 1.4342582, z: 3.9813042}
+  m_Center: {x: -0.31415838, y: 0.4789148, z: 0.46943527}
 --- !u!65 &8001539541082671283
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -199,7 +211,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &3783630088680178915
 MonoBehaviour:
@@ -213,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec5069f8cf58c44b8ed0943efadd3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Power: 5
+  Power: 8.5
   collectionText: {fileID: 0}
 --- !u!114 &6103192764147273963
 MonoBehaviour:
