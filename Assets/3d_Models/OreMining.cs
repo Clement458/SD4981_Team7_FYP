@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TouchScript.Examples.Tap;
 using TouchScript.Gestures;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class OreMining : MonoBehaviour
+public class OreMining : MonoBehaviour, IDataPersistence
 {
     public float Power = 5.0f;
     public Text collectionText;
@@ -16,16 +17,17 @@ public class OreMining : MonoBehaviour
     private MeshRenderer rnd;
     private bool growing = false;
     private float growingTime = 0;
+    private bool isPressed;
 
     public static int collectedIron = 0;
-    public static int collectedOre = 0;
+    public static int collectedRocks = 0;
 
     private Vector3[] directions =
     {
-        new Vector3(5, 4, -10),
-        new Vector3(-5, 4, -10),
-        new Vector3(10, 4, -10),
-        new Vector3(-10, 4, -10)
+        new Vector3(15, 6, -10),
+        new Vector3(-15, 6, -10),
+        new Vector3(10, 6, -10),
+        new Vector3(-10, 6, -10)
     };
 
     private void OnEnable()
@@ -67,6 +69,10 @@ public class OreMining : MonoBehaviour
 
     private void pressedHandler(object sender, EventArgs e)
     {
+        if (isPressed) return; 
+        isPressed = true; 
+        Invoke("ResetPress", 0.1f);
+
         startGrowing();
         if (transform.localScale.x < 0.4f)
         {
@@ -78,8 +84,8 @@ public class OreMining : MonoBehaviour
             }
             else if (gameObject.tag == "Lunar rocks")
             {
-                collectedOre++;
-                collectionText.text = gameObject.tag + " collected: " + collectedOre;
+                collectedRocks++;
+                collectionText.text = gameObject.tag + " collected: " + collectedRocks;
             }
             Destroy(gameObject);
         }
@@ -87,6 +93,16 @@ public class OreMining : MonoBehaviour
         {
             Debug.Log("No ores collected");
         }
+    }
+
+    private void updateText()
+    {
+
+    }
+
+    private void ResetPress() 
+    { 
+        isPressed = false; 
     }
 
     private void longPressedHandler(object sender, GestureStateChangeEventArgs e)
@@ -108,6 +124,13 @@ public class OreMining : MonoBehaviour
                     cube.position = transform.TransformPoint(directions[i] / 4);
                     cube.GetComponent<Rigidbody>().AddForce(Power * Random.insideUnitSphere, ForceMode.Impulse);
                     cube.GetComponent<Renderer>().material.color = Color.white;
+
+                    cube.gameObject.isStatic = false;
+                    Rigidbody rb = cube.GetComponent<Rigidbody>(); 
+                    if (rb != null) 
+                    { 
+                        rb.constraints = RigidbodyConstraints.None;
+                    }
                 }
             }
         }
@@ -115,5 +138,20 @@ public class OreMining : MonoBehaviour
         {
             stopGrowing();
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        collectedIron = data.ironOre;
+        collectedRocks = data.rocks;
+
+        collectionText.text = gameObject.tag + " collected: " + collectedIron;
+        collectionText.text = gameObject.tag + " collected: " + collectedRocks;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.ironOre = collectedIron;
+        data.rocks = collectedRocks;
     }
 }
