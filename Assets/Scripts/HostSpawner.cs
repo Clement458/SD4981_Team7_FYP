@@ -5,7 +5,7 @@ using Fusion.Sockets;
 using System.Collections.Generic;
 using System;
 
-public class PeerSpawner : MonoBehaviour, INetworkRunnerCallbacks
+public class HostSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
