@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: id
       value: a73c2835-b66c-4d43-8b97-4ca9ae9aa2cb
       objectReference: {fileID: 0}
+    - target: {fileID: 5309720808269524329, guid: 1b3f7b07b94990a489fe787e16049623, type: 3}
+      propertyPath: panelSet
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5975136722492703588, guid: 1b3f7b07b94990a489fe787e16049623, type: 3}
       propertyPath: m_LocalScale.x
       value: 5.2568
@@ -2349,6 +2353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: data.game
+  useEncryption: 1
 --- !u!4 &893624149
 Transform:
   m_ObjectHideFlags: 0
@@ -4120,6 +4125,10 @@ PrefabInstance:
     - target: {fileID: 5309720808269524329, guid: 1b3f7b07b94990a489fe787e16049623, type: 3}
       propertyPath: id
       value: 1db49a9c-0f5a-4689-aa51-328406804a73
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309720808269524329, guid: 1b3f7b07b94990a489fe787e16049623, type: 3}
+      propertyPath: panelSet
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5975136722492703588, guid: 1b3f7b07b94990a489fe787e16049623, type: 3}
       propertyPath: m_LocalPosition.x

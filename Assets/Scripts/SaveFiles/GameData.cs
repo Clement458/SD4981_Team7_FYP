@@ -1,3 +1,4 @@
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class GameData
     public int rocks;
     public float veggies;
     public float water;
-    public Dictionary<string, bool> solarPanelsSet;
+    public SerializableDictionary<string, bool> solarPanelsSet;
 
     public float maxWater = 10f;
 
@@ -21,5 +22,7 @@ public class GameData
         this.rocks = 0; 
         this.veggies = 0;
         this.water = 1f;
+
+        this.solarPanelsSet = new SerializableDictionary<string, bool>();
     }
 }

@@ -46,6 +46,7 @@ public class OreMining : MonoBehaviour, IDataPersistence
         pressGesture.Pressed -= pressedHandler;
     }
 
+
     private void Update()
     {
         if (growing)
@@ -145,8 +146,14 @@ public class OreMining : MonoBehaviour, IDataPersistence
         collectedIron = data.ironOre;
         collectedRocks = data.rocks;
 
-        collectionText.text = gameObject.tag + " collected: " + collectedIron;
-        collectionText.text = gameObject.tag + " collected: " + collectedRocks;
+        if (gameObject.tag == "Iron ore")
+        {
+            collectionText.text = gameObject.tag + " collected: " + collectedIron;
+        }
+        else if (gameObject.tag == "Lunar rocks")
+        {
+            collectionText.text = gameObject.tag + " collected: " + collectedRocks;
+        }
     }
 
     public void SaveData(ref GameData data)

@@ -6,8 +6,7 @@ using UnityEngine.VFX;
 public class SolarPanel : MonoBehaviour
 {
     [SerializeField] private string id;
-    private bool panelSet = false;
-    private GameObject gameObject;
+    public bool panelSet = false;
 
     [ContextMenu("Generate GUID for ID")]
     private void GenerateGuid()
@@ -17,7 +16,6 @@ public class SolarPanel : MonoBehaviour
 
     void Start()
     {
-        gameObject = GetComponent<GameObject>();
         if (panelSet)
         {
             gameObject.SetActive(true);
