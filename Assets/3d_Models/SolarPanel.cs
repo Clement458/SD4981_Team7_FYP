@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class SolarPanel : MonoBehaviour
 {
@@ -16,6 +15,9 @@ public class SolarPanel : MonoBehaviour
 
     void Start()
     {
+        // Access GameData through GameManager
+        LoadData(GameManager.instance.gameData);
+
         if (panelSet)
         {
             gameObject.SetActive(true);
@@ -28,19 +30,13 @@ public class SolarPanel : MonoBehaviour
 
     public void LoadData(GameData data)
     {
-        data.solarPanelsSet.TryGetValue(id, out panelSet);
-        if (!panelSet)
+        if (data.solarPanelsSet.TryGetValue(id, out panelSet) && panelSet)
+        {
+            gameObject.SetActive(true);
+        }
+        else
         {
             gameObject.SetActive(false);
         }
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        if (data.solarPanelsSet.ContainsKey(id))
-        {
-            data.solarPanelsSet.Remove(id);
-        }
-        data.solarPanelsSet.Add(id, panelSet);
     }
 }

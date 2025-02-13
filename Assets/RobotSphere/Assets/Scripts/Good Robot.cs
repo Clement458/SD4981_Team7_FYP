@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GoodRobot : MonoBehaviour
@@ -8,7 +9,6 @@ public class GoodRobot : MonoBehaviour
     public float stopDistance = 1.0f; // Distance to stop from target
 
     private int currentTargetIndex = 0; // Current target index
-    private int firstValue = 0; // First value to be incremented
     private int secondValue = 0; // Second value to be incremented
     Animator anim;
 
@@ -21,30 +21,16 @@ public class GoodRobot : MonoBehaviour
 
     IEnumerator MoveToTargets()
     {
-        while (true)
+        while (currentTargetIndex < targets.Length)
         {
-            // Get the current target position
-            Transform currentTarget = targets[currentTargetIndex];
-
             // Move towards the current target
-            while (Vector3.Distance(transform.position, currentTarget.position) > stopDistance)
-            {
-                transform.LookAt(currentTarget);
-                anim.SetBool("Walk_Anim", true);
-                transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
-                yield return null; // Wait for the next frame
-            }
-
-            if (Vector3.Distance(transform.position, currentTarget.position) <= stopDistance) 
-            {
-                anim.SetBool("Walk_Anim", false);
-
-            }
+            Transform currentTarget = targets[currentTargetIndex];
+            yield return StartCoroutine(MoveTowardsTarget(currentTarget));
 
             // Wait at the current target and increment the value
             if (currentTargetIndex == 0)
             {
-                yield return StartCoroutine(IncrementValue(() => OreMining.collectedRocks++));
+                yield return StartCoroutine(IncrementValue(() => GameManager.instance.SetCollectedRocks(GameManager.instance.GetCollectedRocks() + 1)));
             }
             else if (currentTargetIndex == 1)
             {
@@ -53,11 +39,20 @@ public class GoodRobot : MonoBehaviour
 
             // Move to the next target if there are more targets
             currentTargetIndex++;
-            if (currentTargetIndex >= targets.Length)
-            {
-                yield break; // Exit the coroutine if all targets are visited
-            }
         }
+    }
+
+    IEnumerator MoveTowardsTarget(Transform target)
+    {
+        while (Vector3.Distance(transform.position, target.position) > stopDistance)
+        {
+            transform.LookAt(target);
+            anim.SetBool("Walk_Anim", true);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            yield return null; // Wait for the next frame
+        }
+
+        anim.SetBool("Walk_Anim", false);
     }
 
     IEnumerator IncrementValue(System.Action incrementAction)
@@ -65,8 +60,8 @@ public class GoodRobot : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             incrementAction();
-            Debug.Log("Value: " + (currentTargetIndex == 0 ? OreMining.collectedRocks : secondValue));
-            float randomDelay = Random.Range(0.5f, 2.0f); // Random delay between 0.5 and 2 seconds
+            Debug.Log("Value: " + (currentTargetIndex == 0 ? GameManager.instance.GetCollectedRocks() : secondValue));
+            float randomDelay = UnityEngine.Random.Range(0.5f, 2.0f); // Random delay between 0.5 and 2 seconds
             yield return new WaitForSeconds(randomDelay);
         }
     }

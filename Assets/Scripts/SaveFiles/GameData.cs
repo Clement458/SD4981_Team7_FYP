@@ -21,7 +21,7 @@ public class GameData
         this.ironOre = 0;
         this.rocks = 0; 
         this.veggies = 0;
-        this.water = 1f;
+        this.water = 5f;
 
         this.solarPanelsSet = new SerializableDictionary<string, bool>();
     }
