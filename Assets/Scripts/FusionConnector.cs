@@ -40,6 +40,9 @@ public class FusionConnector : MonoBehaviour
     [Tooltip("The message shown before starting the game.")]
     public TextMeshProUGUI preGameMessage;
 
+    // UI presented in game
+    public GameObject InGamePanel;
+
     public static FusionConnector Instance { get; private set; }
 
     private void Awake()
@@ -52,6 +55,8 @@ public class FusionConnector : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        GoToMainMenu();
     }
 
     private void OnDestroy()
@@ -101,13 +106,15 @@ public class FusionConnector : MonoBehaviour
     {
         mainMenuObject.SetActive(true);
         mainGameObject.SetActive(false);
+        InGamePanel.SetActive(false);
     }
 
     public void GoToGame()
     {
         mainMenuObject.SetActive(false);
         mainGameObject.SetActive(true);
-
+        InGamePanel.SetActive(false);
+        Debug.Log("Switched to game UI.");
     }
 
     internal void OnPlayerJoin(NetworkRunner runner)
@@ -147,14 +154,49 @@ public class FusionConnector : MonoBehaviour
             return;
         }
 
-
-
         // If no trivia manager has been made and we are the master mode client.
         // Redundant but being safe.
         if (runner.IsSharedModeMasterClient && !NetworkManager.ManagerPresent)
         {
+            Debug.Log("Spawning trivia game prefab...");
             runner.Spawn(triviaGamePrefab);
+            Debug.Log("Trivia game prefab spawned.");
+
             showGameButton.SetActive(false);
+            Debug.Log("Game button hidden.");
+
+            // Transition to main game panel
+            HandleGameStart(runner);
         }
     }
+
+
+    private void HandleGameStart(NetworkRunner runner)
+    {
+        // Transition to main game object first
+        mainMenuObject.SetActive(false);
+        mainGameObject.SetActive(true);
+        InGamePanel.SetActive(false);
+        Debug.Log("Transitioned to main game panel.");
+
+        // Additional game start logic
+        // Enable any necessary components or game objects
+        // Start timers, initialize variables, etc.
+        Debug.Log("Game state changed to active.");
+
+        // Update the pre-game message
+        SetPregameMessage("Game is starting...");
+
+        // Schedule transition to in-game panel
+        StartCoroutine(SwitchToInGamePanel());
+    }
+
+    private IEnumerator SwitchToInGamePanel()
+    {
+        yield return new WaitForSeconds(1);  // Adjust timing as needed
+        mainGameObject.SetActive(false);
+        InGamePanel.SetActive(true);
+        Debug.Log("Transitioned to in-game panel.");
+    }
+
 }

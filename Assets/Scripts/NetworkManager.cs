@@ -316,9 +316,6 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
         // If showin an answer, we show which players got the question correct and increase their score.
         if (gameState == GameState.Intro || gameState == GameState.NewRound)
         {
-            // Resets the score for the player
-            HostPlayerScript.LocalPlayer.Score = 0;
-
             // HostPlayerScript.LocalPlayer.Expression = HostPlayerScript.AvatarExpressions.Neutral;
 
             triviaMessage.text = gameState == GameState.Intro ? "Select The Correct Answer\nStarting Game Soon" : "New Game Starting Soon!";
@@ -327,7 +324,7 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
         }
         else if (gameState == GameState.ShowAnswer)
         {
-            OnGameStateShowAnswer();
+            //OnGameStateShowAnswer();
 
             endGameObject.Hide();
         }
@@ -364,6 +361,7 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
         }
 
         // Sorts all players in a list and keeps the three highest players.
+        /*
         List<HostPlayerScript> winners = new List<HostPlayerScript>(HostPlayerScript.PlayerRefs);
         winners.RemoveAll(x => x.Score == 0);
         winners.Sort((x, y) => y.Score - x.Score);
@@ -380,7 +378,7 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
         {
             triviaMessage.text = winners[0].PlayerName.Value + " Wins!";
         }
-
+        */
         /* // Sets the player expression based on who won.
         if (winners.Contains(HostPlayerScript.LocalPlayer))
         {
@@ -392,6 +390,7 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
         } */
     }
 
+    /*
     private void OnGameStateShowAnswer()
     {
         triviaMessage.text = string.Empty;
@@ -434,6 +433,7 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
 
         answerHighlights[0].color = Color.green;
     }
+    */
 
     private void UpdateCurrentTask()
     {

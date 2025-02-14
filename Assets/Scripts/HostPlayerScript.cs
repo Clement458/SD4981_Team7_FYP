@@ -9,16 +9,8 @@ public class HostPlayerScript : NetworkBehaviour
     #region Network Properties
     [Networked] private TickTimer delay { get; set; }
     [Tooltip("The name of the player")]
-    [Networked, OnChangedRender(nameof(OnPlayerNameChanged))]
+    //[Networked, OnChangedRender(nameof(OnPlayerNameChanged))]
     public NetworkString<_16> PlayerName { get; set; }
-
-    [Tooltip("What is the player's score.")]
-    [Networked, OnChangedRender(nameof(OnScoreChanged))]
-    public int Score { get; set; }
-
-    [Tooltip("What is the player's score.")]
-    [Networked, OnChangedRender(nameof(OnScorePopupChanged))]
-    public ScorePopUp scorePopUps { get; set; }
 
     [Tooltip("The amount of points earned by answering the question quickly.")]
     [Networked]
@@ -43,11 +35,6 @@ public class HostPlayerScript : NetworkBehaviour
     private NetworkCharacterController _cc;
     bool taskSpawned;
 
-    [Tooltip("Reference to the name display object.")]
-    public TextMeshProUGUI nameText;
-
-    [Tooltip("Reference to the score display object.")]
-    public TextMeshProUGUI scoreText;
 
     /// <summary>
     /// Unsure if this pattern is okay, but static references to the local player and a list of all players.
@@ -78,8 +65,7 @@ public class HostPlayerScript : NetworkBehaviour
         // The OnRenderChanged functions are called during spawn to make sure they are set properly for players who have already joined the room.
 
         OnTaskChosen();
-        OnScoreChanged();
-        OnPlayerNameChanged();
+        //OnPlayerNameChanged();
 
         transform.SetParent(FusionConnector.Instance.playerContainer, false);
 
@@ -123,27 +109,12 @@ public class HostPlayerScript : NetworkBehaviour
         }
     }
 
+    /*
     void OnPlayerNameChanged()
     {
         nameText.text = PlayerName.Value;
     }
-    void OnScoreChanged()
-    {
-        scoreText.text = Score.ToString();
-    }
-    void OnScorePopupChanged()
-    {
-        if (scorePopUps.Score > 0)
-        {
-            /* _scorePopUpText.text = string.Format("+{0}", ScorePopUp.Score);
-             _scorePopUpAnimator.SetTrigger("CorrectAnswer"); */
-        }
-        else
-        {
-            /* _scorePopUpText.text = "X";
-            _scorePopUpAnimator.SetTrigger("WrongAnswer"); */
-        }
-    }
+    */
 
     void OnMasterClientChanged()
     {
