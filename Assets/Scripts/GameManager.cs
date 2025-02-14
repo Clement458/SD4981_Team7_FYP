@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     private int ironOre;
     private int rocks;
+    private SerializableDictionary<string, bool> solarPanelsSet = new SerializableDictionary<string, bool>();
 
     private void Awake()
     {
@@ -32,47 +33,56 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            BuildSolarPanels();
-        }        
+        UpdateSolarPanels();
+        UpdateUI();
     }
 
     private void Update()
     {
-        UpdateIronOreUI();
-        UpdateRocksUI();
-    }
-
-    public void NewGame()
-    {
-        gameData = new GameData();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("Q pressed");
+            BuildSolarPanels();
+        }
     }
 
     public void LoadData(GameData data)
     {
+        gameData = data;
+
         ironOre = data.ironOre;
         rocks = data.rocks;
-        UpdateSolarPanels();
+        solarPanelsSet = data.solarPanelsSet;
+
+        foreach (SolarPanel panel in solarPanels)
+        {
+            panel.LoadData(solarPanelsSet);
+        }
+        UpdateUI();
     }
 
     public void SaveData(ref GameData data)
     {
         data.ironOre = ironOre;
         data.rocks = rocks;
+        data.solarPanelsSet.Clear();
+        foreach (var entry in gameData.solarPanelsSet)
+        {
+            data.solarPanelsSet.Add(entry.Key, entry.Value);
+        }
     }
 
     private void UpdateSolarPanels()
     {
         foreach (SolarPanel panel in solarPanels)
         {
-            panel.LoadData(gameData);
+            panel.LoadData(gameData.solarPanelsSet);
         }
     }
 
     private void BuildSolarPanels()
     {
-        if (gameData.ironOre >= 2 && gameData.rocks >= 1)
+        if (ironOre >= 2 && rocks >= 1)
         {
             int activatedCount = 0;
 
@@ -81,7 +91,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
                 if (!panel.gameObject.activeSelf)
                 {
                     panel.gameObject.SetActive(true);
-                    panel.panelSet = true;
+                    gameData.solarPanelsSet[panel.id] = true;
                     activatedCount++;
                     if (activatedCount >= 2) break;
                 }
@@ -89,9 +99,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
             if (activatedCount >= 2)
             {
-                gameData.ironOre -= 2;
-                gameData.rocks -= 1;
-                Debug.Log("Build successful! Iron: " + gameData.ironOre + ", Rocks: " + gameData.rocks);
+                AddCollectedIron(-2);
+                AddCollectedRocks(-1);
+                Debug.Log("Build successful! Iron: " + ironOre + ", Rocks: " + rocks);
 
                 // Save updated data
                 DataPersistenceManager.instance.SaveGame();
@@ -112,9 +122,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
         return gameData.ironOre;
     }
 
-    public void SetCollectedIron(int value)
+    public void AddCollectedIron(int value)
     {
-        gameData.ironOre = value;
+        ironOre += value;
+        //Debug.Log("No. of Iron changed by" + value);
+        UpdateUI();
     }
 
     public int GetCollectedRocks()
@@ -122,18 +134,16 @@ public class GameManager : MonoBehaviour, IDataPersistence
         return gameData.rocks;
     }
 
-    public void SetCollectedRocks(int value)
+    public void AddCollectedRocks(int value)
     {
-        gameData.rocks = value;
+        rocks += value;
+        //Debug.Log("No. of Rocks changed by" + value);
+        UpdateUI();
     }
 
-    private void UpdateIronOreUI()
+    private void UpdateUI()
     {
-        ironOreText.text = "Iron Ore: " + ironOre;
-    }
-
-    private void UpdateRocksUI()
-    {
-        rocksText.text = "Rocks: " + rocks;
+        ironOreText.text = "Iron ore: " + ironOre;
+        rocksText.text = "Lunar rocks: " + rocks;
     }
 }

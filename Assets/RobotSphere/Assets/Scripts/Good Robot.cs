@@ -30,7 +30,7 @@ public class GoodRobot : MonoBehaviour
             // Wait at the current target and increment the value
             if (currentTargetIndex == 0)
             {
-                yield return StartCoroutine(IncrementValue(() => GameManager.instance.SetCollectedRocks(GameManager.instance.GetCollectedRocks() + 1)));
+                yield return StartCoroutine(IncrementValue(() => GameManager.instance.AddCollectedRocks(1)));
             }
             else if (currentTargetIndex == 1)
             {

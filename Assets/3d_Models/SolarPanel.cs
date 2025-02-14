@@ -1,10 +1,11 @@
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SolarPanel : MonoBehaviour
 {
-    [SerializeField] private string id;
+    [SerializeField] public string id;
     public bool panelSet = false;
 
     [ContextMenu("Generate GUID for ID")]
@@ -13,30 +14,24 @@ public class SolarPanel : MonoBehaviour
         id = System.Guid.NewGuid().ToString();
     }
 
-    void Start()
-    {
-        // Access GameData through GameManager
-        LoadData(GameManager.instance.gameData);
 
-        if (panelSet)
+    public void SetActiveState(bool state)
+    {
+        panelSet = state;
+        gameObject.SetActive(state);
+    }
+
+    public void LoadData(SerializableDictionary<string, bool> data)
+    {
+        if (data.TryGetValue(id, out bool storedPanelSet))
         {
-            gameObject.SetActive(true);
+            SetActiveState(storedPanelSet);
         }
         else
         {
-            gameObject.SetActive(false);
+            SetActiveState(false);
         }
     }
 
-    public void LoadData(GameData data)
-    {
-        if (data.solarPanelsSet.TryGetValue(id, out panelSet) && panelSet)
-        {
-            gameObject.SetActive(true);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
-    }
+
 }

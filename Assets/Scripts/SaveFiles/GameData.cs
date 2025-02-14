@@ -15,7 +15,7 @@ public class GameData
 
     public float maxWater = 10f;
 
-
+    // structuer of saved data
     public GameData()
     {
         this.ironOre = 0;
