@@ -77,4 +77,10 @@ public class DataPersistenceManager : MonoBehaviour
 
         return new List<IDataPersistence>(dataPersistenceObjects); 
     }
+
+    public GameData GetGameData()
+    {
+        return gameData;
+    }
+
 }

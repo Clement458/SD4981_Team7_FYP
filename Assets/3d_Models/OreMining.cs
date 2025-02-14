@@ -1,16 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TouchScript.Examples.Tap;
-using TouchScript.Gestures;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
+using TouchScript.Gestures;
+using System;
 
-public class OreMining : MonoBehaviour, IDataPersistence
+public class OreMining : MonoBehaviour
 {
     public float Power = 5.0f;
-    public Text collectionText;
 
     private LongPressGesture longPressGesture;
     private PressGesture pressGesture;
@@ -18,9 +15,6 @@ public class OreMining : MonoBehaviour, IDataPersistence
     private bool growing = false;
     private float growingTime = 0;
     private bool isPressed;
-
-    public static int collectedIron = 0;
-    public static int collectedRocks = 0;
 
     private Vector3[] directions =
     {
@@ -46,7 +40,6 @@ public class OreMining : MonoBehaviour, IDataPersistence
         pressGesture.Pressed -= pressedHandler;
     }
 
-
     private void Update()
     {
         if (growing)
@@ -70,23 +63,20 @@ public class OreMining : MonoBehaviour, IDataPersistence
 
     private void pressedHandler(object sender, EventArgs e)
     {
-        if (isPressed) return; 
-        isPressed = true; 
+        if (isPressed) return;
+        isPressed = true;
         Invoke("ResetPress", 0.1f);
 
         startGrowing();
         if (transform.localScale.x < 0.4f)
         {
-            //Debug.Log("Small object");
             if (gameObject.tag == "Iron ore")
             {
-                collectedIron++;
-                collectionText.text = gameObject.tag + " collected: " + collectedIron;
+                GameManager.instance.SetCollectedIron(GameManager.instance.GetCollectedIron() + 1);
             }
             else if (gameObject.tag == "Lunar rocks")
             {
-                collectedRocks++;
-                collectionText.text = gameObject.tag + " collected: " + collectedRocks;
+                GameManager.instance.SetCollectedRocks(GameManager.instance.GetCollectedRocks() + 1);
             }
             Destroy(gameObject);
         }
@@ -96,40 +86,33 @@ public class OreMining : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void updateText()
+    private void ResetPress()
     {
-
-    }
-
-    private void ResetPress() 
-    { 
-        isPressed = false; 
+        isPressed = false;
     }
 
     private void longPressedHandler(object sender, GestureStateChangeEventArgs e)
     {
         if (e.State == Gesture.GestureState.Recognized)
         {
-            // if we are not too small
             if (transform.localScale.x > 0.5f)
             {
-                // break this cube into 8 parts
                 for (int i = 0; i < 4; i++)
                 {
                     var obj = Instantiate(gameObject) as GameObject;
                     var cube = obj.transform;
-                    
+
                     cube.parent = transform.parent;
                     cube.name = "Cube";
                     cube.localScale = 0.3f * transform.localScale;
                     cube.position = transform.TransformPoint(directions[i] / 4);
-                    cube.GetComponent<Rigidbody>().AddForce(Power * Random.insideUnitSphere, ForceMode.Impulse);
+                    cube.GetComponent<Rigidbody>().AddForce(Power * UnityEngine.Random.insideUnitSphere, ForceMode.Impulse);
                     cube.GetComponent<Renderer>().material.color = Color.white;
 
                     cube.gameObject.isStatic = false;
-                    Rigidbody rb = cube.GetComponent<Rigidbody>(); 
-                    if (rb != null) 
-                    { 
+                    Rigidbody rb = cube.GetComponent<Rigidbody>();
+                    if (rb != null)
+                    {
                         rb.constraints = RigidbodyConstraints.None;
                     }
                 }
@@ -139,26 +122,5 @@ public class OreMining : MonoBehaviour, IDataPersistence
         {
             stopGrowing();
         }
-    }
-
-    public void LoadData(GameData data)
-    {
-        collectedIron = data.ironOre;
-        collectedRocks = data.rocks;
-
-        if (gameObject.tag == "Iron ore")
-        {
-            collectionText.text = gameObject.tag + " collected: " + collectedIron;
-        }
-        else if (gameObject.tag == "Lunar rocks")
-        {
-            collectionText.text = gameObject.tag + " collected: " + collectedRocks;
-        }
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        data.ironOre = collectedIron;
-        data.rocks = collectedRocks;
     }
 }
