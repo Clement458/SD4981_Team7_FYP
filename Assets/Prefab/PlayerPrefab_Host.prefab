@@ -132,19 +132,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6f03fb87b478946af4379b5d81a359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _PlayerName:
-    _length: 8
-    _data:
-      Data: 430000006f0000006d00000070000000750000007400000065000000720000000000000000000000000000000000000000000000000000000000000000000000
   _TimerBonusScore: 0
   _IsMasterClient:
     _value: 0
   _ChosenTask: -1
-  popUps: {fileID: 5203898054729250815, guid: dbec7f42c92c88c4b8eebf0c6f69cddb, type: 3}
+  popUps: {fileID: 4305308990181606977, guid: e564688d84b4cdf4f9a843649940efa7, type: 3}
+  _code: 
   clientAns: 
   PopUps: {fileID: 0}
-  nameText: {fileID: 0}
-  scoreText: {fileID: 0}
+  canvasTransform: {fileID: 1332753998026175497, guid: 1131d3a6830216a40baf9c453fe1bdb1, type: 3}
   _messages: {fileID: 0}
 --- !u!143 &4766012644011451727
 CharacterController:

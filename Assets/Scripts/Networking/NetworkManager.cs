@@ -316,8 +316,6 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
         // If showin an answer, we show which players got the question correct and increase their score.
         if (gameState == GameState.Intro || gameState == GameState.NewRound)
         {
-            // HostPlayerScript.LocalPlayer.Expression = HostPlayerScript.AvatarExpressions.Neutral;
-
             triviaMessage.text = gameState == GameState.Intro ? "Select The Correct Answer\nStarting Game Soon" : "New Game Starting Soon!";
 
             endGameObject.Hide();
@@ -379,61 +377,8 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
             triviaMessage.text = winners[0].PlayerName.Value + " Wins!";
         }
         */
-        /* // Sets the player expression based on who won.
-        if (winners.Contains(HostPlayerScript.LocalPlayer))
-        {
-            HostPlayerScript.LocalPlayer.Expression = HostPlayerScript.AvatarExpressions.Happy_CorrectAnswer;
-        }
-        else
-        {
-            HostPlayerScript.LocalPlayer.Expression = HostPlayerScript.AvatarExpressions.Angry_WrongAnswer;
-        } */
     }
 
-    /*
-    private void OnGameStateShowAnswer()
-    {
-        triviaMessage.text = string.Empty;
-
-        // If the player picks the correct answer, their score increases
-        if (HostPlayerScript.LocalPlayer.ChosenTask == 0)
-        {
-            // HostPlayerScript.LocalPlayer.Expression = HostPlayerScript.AvatarExpressions.Happy_CorrectAnswer;
-
-            int scoreValue = pointsPerMiniTasks + HostPlayerScript.LocalPlayer.TimerBonusScore;
-
-            // Gets the score pop up and toggles it.
-            var scorePopUp = HostPlayerScript.LocalPlayer.scorePopUps;
-            scorePopUp.Score = scoreValue;
-            scorePopUp.Toggle = !scorePopUp.Toggle;
-            HostPlayerScript.LocalPlayer.scorePopUps = scorePopUp;
-
-            HostPlayerScript.LocalPlayer.Score += scoreValue;
-
-            _correctSFX.Play();
-        }
-        else
-        {
-            // Gets score value and toggles it
-            var scorePopUp = HostPlayerScript.LocalPlayer.scorePopUps;
-            scorePopUp.Score = 0;
-            scorePopUp.Toggle = !scorePopUp.Toggle;
-            HostPlayerScript.LocalPlayer.scorePopUps = scorePopUp;
-
-            // HostPlayerScript.LocalPlayer.Expression = HostPlayerScript.AvatarExpressions.Angry_WrongAnswer;
-
-            _incorrectSFX.Play();
-        }
-
-        // Turns the answer the player chose to red to show they got it incorrect.
-        if (HostPlayerScript.LocalPlayer.ChosenTask > 0)
-        {
-            answerHighlights[HostPlayerScript.LocalPlayer.ChosenTask].color = Color.red;
-        }
-
-        answerHighlights[0].color = Color.green;
-    }
-    */
 
     private void UpdateCurrentTask()
     {

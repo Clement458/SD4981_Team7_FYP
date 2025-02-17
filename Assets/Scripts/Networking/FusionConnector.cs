@@ -36,6 +36,7 @@ public class FusionConnector : MonoBehaviour
     public NetworkObject triviaGamePrefab;
 
     public Transform playerContainer;
+    public Transform canvasContainer;
 
     [Tooltip("The message shown before starting the game.")]
     public TextMeshProUGUI preGameMessage;
@@ -159,7 +160,7 @@ public class FusionConnector : MonoBehaviour
         if (runner.IsSharedModeMasterClient && !NetworkManager.ManagerPresent)
         {
             Debug.Log("Spawning trivia game prefab...");
-            runner.Spawn(triviaGamePrefab);
+            runner.Spawn(triviaGamePrefab, new Vector3(-1000,-1000,-1000));
             Debug.Log("Trivia game prefab spawned.");
 
             showGameButton.SetActive(false);
