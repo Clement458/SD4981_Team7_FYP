@@ -357,8 +357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: -85}
+  m_SizeDelta: {x: 397.9226, y: 99.4807}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4375244694581474244
 CanvasRenderer:
@@ -733,6 +733,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 242763738961242306}
+  - component: {fileID: 4987001670374098565}
+  - component: {fileID: 126795292285076655}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -762,9 +764,47 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -0.0025024, y: -0.000015259}
+  m_SizeDelta: {x: 1238.4, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4987001670374098565
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476120701572024797}
+  m_CullTransparentMesh: 1
+--- !u!114 &126795292285076655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476120701572024797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.3886792, g: 0.3886792, b: 0.3886792, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1570710173765840955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,7 +2057,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &5944608832020597175
 GameObject:
@@ -2331,8 +2371,10 @@ MonoBehaviour:
   showGameButton: {fileID: 679960946946803930}
   roomName: {fileID: 2343854552627233655}
   triviaGamePrefab: {fileID: 4344099742829376936, guid: 367ed8eb641960d4e8bce4251870a8a7, type: 3}
-  playerContainer: {fileID: 1128869557475408536}
+  playerContainer: {fileID: 4810651962944517751}
+  canvasContainer: {fileID: 0}
   preGameMessage: {fileID: 6190740260481528165}
+  InGamePanel: {fileID: 0}
 --- !u!225 &6137023930961870089
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2699,7 +2741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &753149888941375858
 RectTransform:
   m_ObjectHideFlags: 0
