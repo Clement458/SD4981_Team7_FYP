@@ -5,12 +5,12 @@ using Mono.Cecil.Cil;
 using TMPro;
 using UnityEngine;
 
-public class HostPlayerScript : NetworkBehaviour
+public class HostPlayer : NetworkBehaviour
 {
     #region Network Properties
     [Networked] private TickTimer delay { get; set; }
     [Tooltip("The name of the player")]
-    //[Networked, OnChangedRender(nameof(OnPlayerNameChanged))]
+    [Networked, OnChangedRender(nameof(OnPlayerNameChanged))]
     public NetworkString<_16> PlayerName { get; set; }
 
     [Tooltip("The amount of points earned by answering the question quickly.")]
@@ -33,12 +33,13 @@ public class HostPlayerScript : NetworkBehaviour
     private Transform canvasContainer;
 
     #endregion
-
+    [Tooltip("Reference to the name display object.")]
+    public TextMeshProUGUI nameText;
     private NetworkCharacterController _cc;
 
-    public static HostPlayerScript LocalPlayer;
+    public static HostPlayer LocalPlayer;
 
-    public static List<HostPlayerScript> PlayerRefs = new List<HostPlayerScript>();
+    public static List<HostPlayer> PlayerRefs = new List<HostPlayer>();
 
     private PopUpController popUpController;
 
@@ -82,6 +83,10 @@ public class HostPlayerScript : NetworkBehaviour
 
         bool showGameButton = Runner.IsSharedModeMasterClient && NetworkManager.ManagerPresent == false;
         FusionConnector.Instance.showGameButton.SetActive(showGameButton);
+    }
+    void OnPlayerNameChanged()
+    {
+        nameText.text = PlayerName.Value;
     }
 
     private void Start()

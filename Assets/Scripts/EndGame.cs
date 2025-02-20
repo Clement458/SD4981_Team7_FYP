@@ -15,7 +15,7 @@ public class EndGame : MonoBehaviour
     /// Shows the list of winners.
     /// </summary>
     /// <param name="winners">The list of winning players</param>
-    public void Show(List<HostPlayerScript> winners)
+    public void Show(List<HostPlayer> winners)
     {
         gameObject.SetActive(true);
     }

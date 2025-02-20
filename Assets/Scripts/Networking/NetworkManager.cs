@@ -206,7 +206,7 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
             }
             else if (TaskGenerated < maxMiniTasks)
             {
-                HostPlayerScript.LocalPlayer.ChosenTask = -1;
+                HostPlayer.LocalPlayer.ChosenTask = -1;
 
                 // This means we are at the end of the question list and want to reshuffle the answers
                 if (CurrentTask + 1 >= randomizedTaskList.Length)
@@ -238,14 +238,14 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
         if (gameState == GameState.ShowQuestion)
         {
             int totalAnswers = 0;
-            for (int i = 0; i < HostPlayerScript.PlayerRefs.Count; i++)
+            for (int i = 0; i < HostPlayer.PlayerRefs.Count; i++)
             {
-                if (HostPlayerScript.PlayerRefs[i].ChosenTask >= 0)
+                if (HostPlayer.PlayerRefs[i].ChosenTask >= 0)
                 {
                     totalAnswers++;
                 }
             }
-            if (totalAnswers == HostPlayerScript.PlayerRefs.Count)
+            if (totalAnswers == HostPlayer.PlayerRefs.Count)
             {
                 timerLength = 3f;
                 timer = TickTimer.CreateFromSeconds(Runner, timerLength);
@@ -265,11 +265,11 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
         {
             // For now, if Chosen Answer is less than 0, this means they haven't picked an answer.
             // We don't allow players to pick new answers at this time.
-            if (HostPlayerScript.LocalPlayer.ChosenTask < 0)
+            if (HostPlayer.LocalPlayer.ChosenTask < 0)
             {
                 _confirmSFX.Play();
 
-                HostPlayerScript.LocalPlayer.ChosenTask = index;
+                HostPlayer.LocalPlayer.ChosenTask = index;
 
                 // Colors the highlighted question cyan.
                 answerHighlights[index].color = Color.cyan;
@@ -278,11 +278,11 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
                 if (remainingTime.HasValue)
                 {
                     float percentage = remainingTime.Value / this.timerLength;
-                    HostPlayerScript.LocalPlayer.TimerBonusScore = Mathf.RoundToInt(timeBonus * percentage);
+                    HostPlayer.LocalPlayer.TimerBonusScore = Mathf.RoundToInt(timeBonus * percentage);
                 }
                 else
                 {
-                    HostPlayerScript.LocalPlayer.TimerBonusScore = 0;
+                    HostPlayer.LocalPlayer.TimerBonusScore = 0;
                 }
             }
             else
@@ -360,7 +360,7 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
 
         // Sorts all players in a list and keeps the three highest players.
         /*
-        List<HostPlayerScript> winners = new List<HostPlayerScript>(HostPlayerScript.PlayerRefs);
+        List<HostPlayer> winners = new List<HostPlayer>(HostPlayer.PlayerRefs);
         winners.RemoveAll(x => x.Score == 0);
         winners.Sort((x, y) => y.Score - x.Score);
         if (winners.Count > 3)
@@ -410,7 +410,7 @@ public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
             triviaMessage.text = string.Empty;
 
             // Deisgnate that the local player has not chosen an answer yet.
-            HostPlayerScript.LocalPlayer.ChosenTask = -1;
+            HostPlayer.LocalPlayer.ChosenTask = -1;
 
             // Change the game state
             if (HasStateAuthority)

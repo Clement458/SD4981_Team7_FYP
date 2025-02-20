@@ -1157,7 +1157,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8672535688046754393}
-  - {fileID: 1128869557475408536}
   - {fileID: 3553533287411107130}
   - {fileID: 8466699150411709207}
   m_Father: {fileID: 8479365214441824170}
@@ -1503,6 +1502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1128869557475408536}
+  - component: {fileID: 1365862241041777295}
   m_Layer: 5
   m_Name: PlayerGrid
   m_TagString: Untagged
@@ -1517,18 +1517,42 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2878091943033645099}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4824906699834687613}
+  m_Father: {fileID: 4810651962944517751}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -90}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 500}
+  m_SizeDelta: {x: 540, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1365862241041777295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2878091943033645099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &3671413295819550009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2305,7 @@ RectTransform:
   - {fileID: 242763738961242306}
   - {fileID: 8479365214441824170}
   - {fileID: 124786644609011475}
+  - {fileID: 1128869557475408536}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2371,7 +2396,7 @@ MonoBehaviour:
   showGameButton: {fileID: 679960946946803930}
   roomName: {fileID: 2343854552627233655}
   triviaGamePrefab: {fileID: 4344099742829376936, guid: 367ed8eb641960d4e8bce4251870a8a7, type: 3}
-  playerContainer: {fileID: 4810651962944517751}
+  playerContainer: {fileID: 1128869557475408536}
   canvasContainer: {fileID: 0}
   preGameMessage: {fileID: 6190740260481528165}
   InGamePanel: {fileID: 0}

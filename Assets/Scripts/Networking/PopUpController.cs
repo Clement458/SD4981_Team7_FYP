@@ -12,7 +12,7 @@ public class PopUpController : MonoBehaviour
     private Text popUpText;
     private GameObject popupInstance;
 
-    public HostPlayerScript LocalPlayer = HostPlayerScript.LocalPlayer;
+    public HostPlayer LocalPlayer = HostPlayer.LocalPlayer;
 
     private string code;
     private bool inputAllowed = true;
