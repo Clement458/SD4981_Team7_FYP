@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Singleton network behavoir that manages the game and is managed by the shared mode master client.
 /// </summary>
-public class NetworkManager : NetworkBehaviour, IStateAuthorityChanged
+public class NetworkedTaskManager : NetworkBehaviour, IStateAuthorityChanged
 {
     [Tooltip("Scriptable object that contains the trivia question.")]
     public MiniTaskSet miniTasks;

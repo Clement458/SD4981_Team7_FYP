@@ -60,7 +60,7 @@ public class HostPlayer : NetworkBehaviour
             IsMasterClient = Runner.IsSharedModeMasterClient;
         }
 
-        bool showGameButton = Runner.IsSharedModeMasterClient && NetworkManager.ManagerPresent == false;
+        bool showGameButton = Runner.IsSharedModeMasterClient && NetworkedTaskManager.ManagerPresent == false;
         FusionConnector.Instance.showGameButton.SetActive(showGameButton);
         /*
         popUpController = FindObjectOfType<PopUpController>();
@@ -81,7 +81,7 @@ public class HostPlayer : NetworkBehaviour
         if (HasStateAuthority)
             IsMasterClient = runner.IsSharedModeMasterClient;
 
-        bool showGameButton = Runner.IsSharedModeMasterClient && NetworkManager.ManagerPresent == false;
+        bool showGameButton = Runner.IsSharedModeMasterClient && NetworkedTaskManager.ManagerPresent == false;
         FusionConnector.Instance.showGameButton.SetActive(showGameButton);
     }
     void OnPlayerNameChanged()

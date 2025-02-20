@@ -121,7 +121,7 @@ public class FusionConnector : MonoBehaviour
     internal void OnPlayerJoin(NetworkRunner runner)
     {
         // Only set pregame messages if the game hasn't started.
-        if (NetworkManager.ManagerPresent)
+        if (NetworkedTaskManager.ManagerPresent)
         {
             return;
         }
@@ -157,10 +157,10 @@ public class FusionConnector : MonoBehaviour
 
         // If no trivia manager has been made and we are the master mode client.
         // Redundant but being safe.
-        if (runner.IsSharedModeMasterClient && !NetworkManager.ManagerPresent)
+        if (runner.IsSharedModeMasterClient && !NetworkedTaskManager.ManagerPresent)
         {
             Debug.Log("Spawning trivia game prefab...");
-            runner.Spawn(triviaGamePrefab, new Vector3(-1000,-1000,-1000));
+            runner.Spawn(triviaGamePrefab, new Vector3(-1000, -1000, -1000));
             Debug.Log("Trivia game prefab spawned.");
 
             showGameButton.SetActive(false);
