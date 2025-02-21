@@ -99,11 +99,11 @@ public class HostPlayer : NetworkBehaviour
     {
         if (inputAllowed && !isSpawningTask && Input.GetKeyUp(KeyCode.P))
         {
-            Debug.Log("P pressed");
             inputAllowed = false;
+            Debug.Log("P pressed");
             isSpawningTask = true; // Set flag to indicate task is being spawned
             SpawnTask();
-            StartCoroutine(InputDelayCoroutineA(2f));
+            StartCoroutine(InputDelayCoroutineA(5f));
         }
     }
 

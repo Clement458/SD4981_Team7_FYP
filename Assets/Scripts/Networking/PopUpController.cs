@@ -10,38 +10,42 @@ public class PopUpController : MonoBehaviour
 {
     private PopUpBtn popUpBtn;
     private Text popUpText;
-    private GameObject popupInstance;
 
     public HostPlayer LocalPlayer = HostPlayer.LocalPlayer;
 
+    private string popText;
     private string code;
     private bool inputAllowed = true;
-    bool taskComplete = false;
+    private bool taskComplete = false;
 
     private void Start()
     {
         popUpBtn = GetComponentInChildren<PopUpBtn>();
         popUpText = GetComponentInChildren<Text>();
 
+        taskComplete = false;
         code = Random.Range(1, 11).ToString();
-        popUpText.text = "Rocket landing task\nCurrent code: " + code;
+
+        popText = "Rocket landing\nCurrent code: " + code;
+        popUpText.text = popText;
     }
 
     private void Update()
     {
         if (inputAllowed && Input.GetKeyUp(KeyCode.O))
         {
-            Debug.Log("Task refreshing");
             inputAllowed = false;
+            Debug.Log("Task refreshing");
+            Debug.Log("O input:" + taskComplete);
             RefreshTask();
             StartCoroutine(InputDelayCoroutineB(2f));
         }
 
         if (inputAllowed && Input.GetKeyUp(KeyCode.I))
         {
+            inputAllowed = false;
             Debug.Log("taskComplete now true");
             taskComplete = true;
-            inputAllowed = false;
             StartCoroutine(InputDelayCoroutineB(2f));
         }
     }
@@ -54,14 +58,16 @@ public class PopUpController : MonoBehaviour
 
     public void RefreshTask()
     {
+        Debug.Log("Task completion: " + taskComplete);
         if (taskComplete)
         {
             Debug.Log("Task complete, closing popup of code " + code);
-            Destroy(popupInstance); // it won't destroy X_X
+            Destroy(gameObject);
         }
         else
         {
-            popUpText.text = popUpText.text + "\nWork in progress";
+            popText = popUpText.text;
+            popUpText.text = popText + "\nWork in progress";
         }
 
         Debug.Log("Task status refreshed");
@@ -90,11 +96,9 @@ public class PopUpController : MonoBehaviour
 
     public void OnPopupBtnClicked()
     {
-        if (popupInstance != null)
-        {
-            RPC_SendMessage(code);
-            RefreshTask();
-        }
+        Debug.Log("Button clicked");
+        RPC_SendMessage(code);
+        RefreshTask();
     }
 
     [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority, HostMode = RpcHostMode.SourceIsHostPlayer)]
@@ -117,7 +121,7 @@ public class PopUpController : MonoBehaviour
             Debug.Log($"Some client said: {message}\n");
             if (message == code)
             {
-                taskComplete = true;
+                Debug.Log("Message sent");
             }
             else
             {
